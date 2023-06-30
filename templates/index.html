@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>HealBot</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+   <!-- <link rel="stylesheet" href="/static/css/animate.min.css"> -->
+   <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+   <!-- style css -->
+   <link rel="stylesheet" href="/static/css/style.css">
+   <!-- Responsive-->
+   <link rel="stylesheet" href="/static/css/responsive.css">
+   <!-- fevicon -->
+   <link rel="icon" href="/static/images/fevicon.png" type="image/gif" />
+   <!-- Scrollbar Custom CSS -->
+   <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+   <!-- Tweaks for older IEs-->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+      media="screen">
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+   <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+   <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+</head>
+<!-- body -->
+
+<body class="main-layout">
+   <!-- loader  -->
+   <div class="loader_bg">
+      <div class="loader"><img src="/static/images/loading.gif" alt="#" /></div>
+   </div>
+   <!-- end loader -->
+   <!-- header -->
+   <header>
+      <!-- header inner -->
+      <div class="header">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                  <div class="full">
+                     <div class="center-desk">
+                        <div class="logo">
+                           <a href="/"><img src="/static/images/logo.png" alt="#" /></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+                           <li class="nav-item">
+                              <a class="nav-link" href="#services">Services </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#work">Our Work</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- end header inner -->
+   <!-- end header -->
+   <!-- banner -->
+   <section class="banner_main">
+      <div class="container-fluid">
+         <div class="row d_flex">
+            <div class="col-md-7">
+               <div class="text-bg">
+                  <div class="padding_lert">
+                     <i><img src="/static/images/btn.png" alt="#" /></i>
+                     <h1>A Dieases Prediction System<br>Landing Page</h1>
+                     <a href="Javascript:void(0)">Read More</a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-5 bah">
+               <div class="bann_img">
+                  <figure><img src="/static/images/bann_img.png" alt="#" /></figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!-- end banner -->
+   <!-- service -->
+   <div id="services" class="service">
+      <div class="container-fluid">
+         <div class="row d_flex">
+            <div class="col-md-5">
+               <div class="service_img">
+                  <figure><img src="/static/images/pc.png" alt="#" /></figure>
+               </div>
+            </div>
+            <div class="col-md-7">
+               <div class="titlepage">
+                  <h2>Predict Your Dieases</h2>
+                  <br>
+                  <form action="/process" method="POST">
+                     <select name="countries" id="countries" multiple>
+                        {% for a in t %}
+                        <option value={{a}}>{{a}}</option>
+                        {% endfor %}
+                     </select>
+                     <br><br>
+                     <input type="submit" value="Submit" class="btn text-gray-900 btn-primary btn-lg">
+                     <br>
+                     {% if s %}
+                     <h1>Congrats!! you Don't have any Dieases</h1>
+                     {% endif %}
+
+                     {% if p %}
+                     <h1>You are Suffering from {{p}}</h1>
+                     {% endif %}
+
+
+                  </form>
+                  <!-- <a class="read_more"  onclick="/process">Predict</a> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end service -->
+   <!-- solutions -->
+   <div class="solutions">
+      <div class="container">
+         <div class="row d_flex">
+            <div class="col-md-7">
+               <div class="titlepage">
+                  <h2>Don't Take Risk <br>Health is Wealth</h2>
+                  <span>The system uses Naive Bayesian classification techniques to predict disease. This information is
+                     collected from different patients and sources. However, the limitation of this
+                     model is that it treats each symptom independently, regardless of the patient's previous health
+                     history.</span>
+                  <a class="read_more" href="Javascript:void(0)">Read More</a>
+               </div>
+            </div>
+            <div class="col-md-5">
+               <div class="solutions_img">
+                  <figure><img src="/static/images/solusan.png" alt="#" /></figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end solutions -->
+   <!-- work -->
+   <div class="work">
+      <section class="text-gray-600 body-font">
+         <div class="containe  px-5 py-24 mx-auto">
+            <div class="flex flex-wrap w-full mb-20">
+               <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                  <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Advancements for this
+                     Application</h1>
+                  <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+               </div>
+               <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">This advanced model can accurately predict 42
+                  diseases based on the analysis of 132
+                  symptoms exhibited by patients. Although it doesn't take into account the patients' previous medical
+                  history, it effectively serves patients who have no medical history available. The primary objective
+                  of
+                  this model is to bridge the gap between patients and doctors, enabling swift patient recovery.
+                  There are numerous opportunities for further advancements to enhance the functionality and user
+                  experience of the current model.</p>
+            </div>
+            <div class="flex flex-wrap -m-4">
+               <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                     <img class="h-40 rounded w-full object-cover object-center mb-6" src="/static/images/work1.jpg"
+                        alt="content">
+                     <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">#1</h3>
+                     <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chatbot Creation</h2>
+                     <p class="leading-relaxed text-base">Creating chatbot can Enhance user experience and making them
+                        usable in reginal languages.</p>
+                  </div>
+               </div>
+               <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                     <img class="h-40 rounded w-full object-cover object-center mb-6" src="/static/images/work2.jpg"
+                        alt="content">
+                     <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">#2</h3>
+                     <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Medical History</h2>
+                     <p class="leading-relaxed text-base">The disease can be better predicted if the model considers the
+                        patients past health History.</p>
+                  </div>
+               </div>
+               <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                     <img class="h-40 rounded w-full object-cover object-center mb-6" src="/static/images/work3.jpg"
+                        alt="content">
+                     <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">#3</h3>
+                     <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Increasing diseases</h2>
+                     <p class="leading-relaxed text-base">Introducing vast number of diseases can better predict the
+                        cause and increases the accuracy of the model</p>
+                  </div>
+               </div>
+               <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                     <img class="h-40 rounded w-full object-cover object-center mb-6" src="/static/images/work4.jpg"
+                        alt="content">
+                     <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">#4</h3>
+                     <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Collecting large datasets</h2>
+                     <p class="leading-relaxed text-base">Datasets collected plays a crucial role in this application,
+                        hence Qualitative data increases model Accuracy.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+   <!-- <div id="work" class="work">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage">
+                  <h2>Advancements for this Application</h2>
+                  <span> This advanced model can accurately predict 42 diseases based on the analysis of 132 
+                     symptoms exhibited by patients. Although it doesn't take into account the patients' previous medical 
+                     history, it effectively serves patients who have no medical history available. The primary objective of
+                      this model is to bridge the gap between patients and doctors, enabling swift patient recovery. 
+                      There are numerous opportunities for further advancements to enhance the functionality and user 
+                      experience of the current model.
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="our_work">
+                  <figure><img src="/static/images/work1.jpg" alt="#" /></figure>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="our_work">
+                  <figure><img src="/static/images/work2.jpg" alt="#" /></figure>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="our_work">
+                  <figure><img src="/static/images/work3.jpg" alt="#" /></figure>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="our_work">
+                  <figure><img src="/static/images/work4.jpg" alt="#" /></figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div> -->
+   <!-- end work -->
+   <!--  footer -->
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <div class="multipurpose">
+                     <h3>Let’s <br>Connect <br> Collab</h3>
+                  </div>
+               </div>
+               <div class="col-md-7 sm_none">
+                  <div class="contac_detel">
+                     <ul>
+                        <li><img src="/static/images/call.png" alt="#" />+91 6281786597</li>
+                        <li><a href="Javascript:void(0)"> <img src="/static/images/gmail.png"
+                                 alt="#" />b.shivasai209@gmail.com</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="multipurpose">
+                     <p>I am Technology Enhusiast, My name is shiva Currently pursuing B.E in computer science
+                        Engineering at Chaitanya Bharathi INstitute of Technology Hyderabad. </p>
+                  </div>
+               </div>
+               <div class="col-md-7 sm_show">
+                  <div class="contac_detel">
+                     <ul>
+                        <li><img src="/static/" alt="#" />+91 6281786597</li>
+                        <li><a href="Javascript:void(0)"> <img src="/static/images/gmail.png"
+                                 alt="#" />b.shivasai209@gmail.com</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <p>Copyright 2024 All Right Reserved By<a href="https://html.design/">Healbot</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+   <!-- end footer -->
+   <!-- Javascript files-->
+   <script src="/static/js/jquery.min.js"></script>
+   <script src="/static/js/bootstrap.bundle.min.js"></script>
+   <script src="/static/js/jquery-3.0.0.min.js"></script>
+   <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="/static/js/custom.js"></script>
+
+   <script>
+      // new MultiSelectTag('countries')  // id
+
+      new MultiSelectTag('countries', {
+         rounded: true,    // default true
+         shadow: true,      // default false
+         placeholder: 'Search',  // default Search...
+         onChange: function (values) {
+            console.log(values)
+         }
+      })
+   </script>
+
+</body>
+
+</html>
